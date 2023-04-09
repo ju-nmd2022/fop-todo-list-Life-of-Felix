@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo</title>
     <link rel="stylesheet" href="css/stylesheet.css">
-    <!-- favicon -->
+    <!-- favicon as extra goes here-->
 </head>
 <body>
     <div class="wrapper">
@@ -15,20 +15,17 @@
         </header>
         <main>
             <ul class="todoList">
-                <li>test test <span><button>done</button><button>x</button></span></li>
-                <li>Testing since 2003 <span><button>done</button><button>x</button></span></li>
-                <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad, laborum.<span><button>done</button><button>x</button></span></li>
-
+                <li>test test <span><button>Done</button><button>x</button></span></li>
+                <li>Testing since 2003 <span><button>Done</button><button>x</button></span></li>
+                <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad, laborum.<span><button>Done</button><button>x</button></span></li>
             </ul>
-            <!-- Bit unsure if form is needed and if add should just be seprate button rather than a input -->
-            <form class="addForm" action="">
-                <section>
-                    <input id="inputField" type="text" placeholder="Add todos here">
-                    <input id="addButton" type="submit" value="Add">
-                </section>
-                
-            </form>
         </main>
+        <footer>
+            <form class="addForm">
+                <input id="inputField" type="text" placeholder="Add todos here">
+                <button type="button">Add</button>
+            </form>
+        </footer>
     </div>
 </body>
 <script src="script.js"></script>

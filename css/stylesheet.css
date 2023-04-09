@@ -26,34 +26,39 @@ main{
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 2% 0%;
+    padding: 3% 0%;
 }
 main ul{
     background-color: burlywood;
     height: 100%;
-    width: 30rem;
-    max-width: 80%;
+    width: 90%;
+    max-width: 50rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    
 }
 main ul li{
-    height: 2rem;
     list-style-type: none;
     display: flex;
     justify-content: space-between;
     margin: 1%;
     align-items: center;
+    
 }
 main ul li span{
-   width: 10%;
-   display: flex;
-   justify-content: space-between;
+    display: flex;
+    justify-content: space-around;
+    gap: 10%;
+    box-sizing: content-box;
+    box-sizing: border-box;
+    margin-right: 1%;
 }
 main ul li span button{
-    margin: 0% 1%;
+    border: none;
+    padding: 10%;
 }
-.addForm{
+footer{
     height: 10vh;
     width: 100%;
     background-color: brown;
@@ -63,13 +68,13 @@ main ul li span button{
     align-items: center;
     justify-content: center;
 }
-.addForm section{
+.addForm {
     width: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.addForm input{
+.addForm input, button{
     height: 2.5rem;
     border: none;
 }
@@ -79,4 +84,7 @@ main ul li span button{
 #inputField::placeholder{
     color: brown;
     padding-left: 1rem;
+}
+.addForm button{
+    padding: 0% 1%;
 }
