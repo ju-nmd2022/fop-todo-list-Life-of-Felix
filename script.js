@@ -25,13 +25,27 @@ function readNStore(){
 }
 console.log(localStorage.getItem(listNum)+ "    ///old value")
 
+function idButton(idNum){
+    let todoDoneB = document.querySelector(`.todoList .${idNum} #doneB`)
+    let todoRemoveB = document.querySelector(`.todoList .${idNum} #removeB`)
+
+    todoDoneB.addEventListener('click',changeStatus(idNum))
+}
+function changeStatus(idNum){
+    console.log(idNum + "change that status")
+}
+
+
+
+
 
 // here we need to identify which once of the task buttons are press, so not all or something else turn done or gets remove.
 
-// Mark as done
 
+// test ground, just to try to understand things right
 
+// let id1 = {doneOrNah: "nicht", whoseWork: "Mia"}
+// let id2 = {doneOrNah: "nicht", whoseWork: "Karl"}
 
-
-
-// Remove todo
+// console.log(id1)
+// console.log(id2.doneOrNah)
