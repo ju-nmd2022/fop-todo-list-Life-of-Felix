@@ -16,6 +16,7 @@ InputField.addEventListener("keydown",(key)=>{
 function readNStore(){
     let inTodo = document.querySelector(".addForm input")
 
+    let todoLi = document.createElement("li ")
 // Think on how to structur the array know which task is what task, aswell how do the button speficed itself from the others
 
 
@@ -28,15 +29,14 @@ console.log(localStorage.getItem(listNum)+ "    ///old value")
 function idButton(idNum){
     let todoDoneB = document.querySelector(`.todoList .${idNum} #doneB`)
     let todoRemoveB = document.querySelector(`.todoList .${idNum} #removeB`)
-
     todoDoneB.addEventListener('click',changeStatus(idNum))
+//  todoRemoveB.addEventListner('click',removeTodo(idNum))
 }
 function changeStatus(idNum){
     console.log(idNum + "change that status")
 }
 
-
-
+console.log(URL:)
 
 
 // here we need to identify which once of the task buttons are press, so not all or something else turn done or gets remove.
