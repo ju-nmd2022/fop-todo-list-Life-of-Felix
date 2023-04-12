@@ -1,3 +1,8 @@
+:root{
+    --todoPurp:rgb(178, 102, 176);
+    --todoWhite:rgb(255,255,255) ;
+    --todoLightGrey:rgb(225, 225, 225);
+}
 *{
     padding: 0%;
     margin: 0%;
@@ -22,14 +27,12 @@ header img{
 }
 main{
     width: 100%;
-    background-color: beige;
     display: flex;
     align-items: center;
     flex-direction: column;
     padding: 3% 0%;
 }
 main ul{
-    background-color: burlywood;
     height: 100%;
     width: 90%;
     max-width: 50rem;
@@ -47,21 +50,23 @@ main ul li{
     
 }
 main ul li span{
-    display: flex;
+    display: inline-flex;
     justify-content: space-around;
+    align-items: center;
     gap: 10%;
     box-sizing: content-box;
     box-sizing: border-box;
-    margin-right: 1%;
+    margin-right: 5%;
 }
 main ul li span button{
     border: none;
-    padding: 10%;
+    padding: 10% 20%;
+    background-color: var(--todoLightGrey);
 }
 footer{
     height: 10vh;
     width: 100%;
-    background-color: brown;
+    background-color: var(--todoPurp);
     position: fixed;
     bottom: 0;
     display: flex;
@@ -80,11 +85,16 @@ footer{
 }
 #inputField{
     width: 100%;
-}
-#inputField::placeholder{
-    color: brown;
     padding-left: 1rem;
 }
+#inputField::placeholder{
+    color: var(--todoPurp);
+}
 .addForm button{
-    padding: 0% 1%;
+    padding: 0% 2%;
+    background-color: var(--todoLightGrey);
+}
+.markedDone{
+    background-color: var(--todoPurp);
+    color: var(--todoWhite);
 }

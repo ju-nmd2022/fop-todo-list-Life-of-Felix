@@ -1,51 +1,122 @@
-// Adding todos
-
 let InputButton = document.querySelector(".addForm button")
 let InputField = document.querySelector("#inputField")
-let listNum = 0
+let listNum = 0 
+listNum += localStorage.length
 
-InputButton.addEventListener("click",readNStore)
+
+InputButton.addEventListener("click",readNStoreNDisplay)
 // If the user press enter on the input field the page reloads, as I belive it wants to run script from the html but can't find and just reloads the site. Thus we need to store what the user wrote if the press enter. 
 InputField.addEventListener("keydown",(key)=>{
     if(key.keyCode === 13){
-        readNStore() 
+        readNStoreNDisplay() 
     }
 })
 
 
-function readNStore(){
-    let inTodo = document.querySelector(".addForm input")
-
-    let todoLi = document.createElement("li ")
-// Think on how to structur the array know which task is what task, aswell how do the button speficed itself from the others
+// readLSNDisplay stands for read Localstroage and dispplay
+function readLSNDisplay(){
 
 
-    localStorage.setItem(listNum,inTodo.value)
-    console.log(inTodo.value)
-    inTodo.value = ''
+    if (localStorage.length === 0){
+        console.log("Local stroage is emtpty")
+        todoListCreat("Add task down below!")
+    }else{
+        i = 0
+        while(localStorage.length > i){
+            if(JSON.parse(localStorage.getItem(i)) === null){
+                // console.log(i)
+                
+            }else{
+                todoListCreat(JSON.parse(localStorage.getItem(i)).text,i)
+                    if(JSON.parse(localStorage.getItem(i)).doneMark === true){
+                        changeStatus(i,"LSLoad")
+                    }
+                
+            }
+            i += 1
+        }
+    }
 }
-console.log(localStorage.getItem(listNum)+ "    ///old value")
+readLSNDisplay()
+
+function readNStoreNDisplay(){
+    if(document.querySelector(".addForm input").value !=""){
+        let inTodo = {
+            text: document.querySelector(".addForm input").value,
+            doneMark: false
+        }
+        
+        todoListCreat(inTodo.text, listNum)
+        
+        let StringInTodo = JSON.stringify(inTodo)
+        localStorage.setItem(listNum,StringInTodo)
+        
+        document.querySelector(".addForm input").value = ""
+        listNum += 1
+    }
+}
+
+// B at the end stands for Button
+function todoListCreat(text,num){
+    let todoLi = document.createElement("li")
+    todoLi.classList.add("id"+ num)
+    todoLi.appendChild(document.createTextNode(text))
+
+    let todoSpan = document.createElement("span")
+    todoLi.appendChild(todoSpan);
+
+    let todoDoneB = document.createElement("button")
+    todoDoneB.setAttribute("id","doneB")
+    todoDoneB.appendChild(document.createTextNode("Done"))
+    todoSpan.appendChild(todoDoneB)
+
+    let todoRemoveB = document.createElement("button")
+    todoRemoveB.setAttribute("id","removeB")
+    todoRemoveB.appendChild(document.createTextNode("X"))
+    todoSpan.appendChild(todoRemoveB)
+
+    let todoListHtml = document.querySelector(".todoList")
+    todoListHtml.appendChild(todoLi)
+    idButton(num)
+}
 
 function idButton(idNum){
-    let todoDoneB = document.querySelector(`.todoList .${idNum} #doneB`)
-    let todoRemoveB = document.querySelector(`.todoList .${idNum} #removeB`)
-    todoDoneB.addEventListener('click',changeStatus(idNum))
-//  todoRemoveB.addEventListner('click',removeTodo(idNum))
-}
-function changeStatus(idNum){
-    console.log(idNum + "change that status")
+    let todoDoneB = document.querySelector(`.todoList .id${idNum} #doneB`)
+    let todoRemoveB = document.querySelector(`.todoList .id${idNum} #removeB`)
+    todoDoneB.addEventListener('click',()=>{changeStatus(idNum,"idButton")})
+    todoRemoveB.addEventListener('click',()=>{removeTodo(idNum)})
 }
 
-console.log(URL:)
+function changeStatus(idNum,inFrom){
+    let clickedTask = document.querySelector(`.todoList .id${idNum} #doneB`)
+    clickedTask.classList.toggle("markedDone")
+    // LS stands for Localstroage
+    if(inFrom != "LSLoad"){
+        let status = JSON.parse(localStorage.getItem(idNum)).doneMark
+        if(status === false){
+            status = true
+        }else{
+            status = false
+        }
+        tempLS = JSON.parse(localStorage.getItem(idNum))
+        tempLS.doneMark = status
+        let StringTempLs = JSON.stringify(tempLS)    
+        localStorage.setItem(idNum, StringTempLs)
+        console.log(localStorage.getItem(idNum))
+    }
+}
 
+function removeTodo(idNum){
+    let clickedTask = document.querySelector(`.todoList .id${idNum}`)
+    clickedTask.remove()
 
-// here we need to identify which once of the task buttons are press, so not all or something else turn done or gets remove.
-
-
-// test ground, just to try to understand things right
-
-// let id1 = {doneOrNah: "nicht", whoseWork: "Mia"}
-// let id2 = {doneOrNah: "nicht", whoseWork: "Karl"}
-
-// console.log(id1)
-// console.log(id2.doneOrNah)
+    let i = 0
+    while(localStorage.length > i){
+        tempNextTodo = JSON.parse(localStorage.getItem(idNum+i))
+        let StringTempNextTodo = JSON.stringify(tempNextTodo)
+        localStorage.setItem(idNum,StringTempNextTodo)
+        console.log(idNum)
+        i += 1
+    }
+    
+}
